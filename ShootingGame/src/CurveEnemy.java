@@ -11,4 +11,11 @@ public class CurveEnemy extends Enemy{
             x--;
         }
     }
+
+    public void draw(MyFrame f) {
+        f.setColor(0,0,0);
+        f.fillOval(x,y,30,30);
+        f.setColor(255,255,255);
+        f.fillOval(x+5,y,20,30);
+    }
 }
