@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import java.util.Vector;
 
 public class GameFrame extends MyFrame {
@@ -45,7 +46,7 @@ public class GameFrame extends MyFrame {
     public void checkPlayerAndEnemies() {
         for (int i = 0; i < GameWorld.enemies.size(); i++) {
             Enemy e=GameWorld.enemies.get(i);
-            if (Math.abs(e.x - GameWorld.player.x)<=30 && Math.abs(e.y - GameWorld.player.y)<=30) {
+            if (checkHit(GameWorld.player, e)) {
                 System.out.println("やられた");
                 GameWorld.player.y = -1000;
             }
@@ -60,12 +61,14 @@ public class GameFrame extends MyFrame {
             int hits =0;
             while (j < GameWorld.enemies.size()) {
                 Enemy e = GameWorld.enemies.get(j);
-                if (Math.abs(e.x - b.x)<=30 && Math.abs(e.y - b.y)<=30) {
-                System.out.println("あたり");
-                hits++;
-                GameWorld.enemies.remove(j);
+                if (checkHit(e, b)) {
+                    System.out.println("あたり");
+                    hits++;
+                    e.life--;
                 }
-                else {
+                if (e.life == 0) {
+                    GameWorld.enemies.remove(j);
+                } else {
                     j++;
                 }
             }
@@ -76,5 +79,9 @@ public class GameFrame extends MyFrame {
                 i++;
             }
         }
+    }
+
+    public boolean checkHit(Character a , Character b) {
+        return (Math.abs(a.x - b.x) <= 30 && Math.abs(a.y - b.y) <= 30);
     }
 }
