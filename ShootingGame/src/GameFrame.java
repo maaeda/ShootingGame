@@ -17,6 +17,10 @@ public class GameFrame extends MyFrame {
             moveEnemies();
             checkPlayerAndEnemies();
             checkPlayerBulletsAndEnemies();
+            if(GameWorld.playerBullets.size() == 0) {
+                setColor(0,0,0);
+                drawString("クリア！",100,200,40);
+            }
             sleep(0.03);
         }
     }
@@ -40,6 +44,16 @@ public class GameFrame extends MyFrame {
             Enemy e = GameWorld.enemies.get(i);
             e.draw(this);
             e.move();
+        }
+        int i = 0;
+        while (i < GameWorld.enemies.size()) {
+            Enemy e= GameWorld.enemies.get(i);
+            if (e.y > 400) {
+                GameWorld.enemies.remove(i);
+            }
+            else {
+                i++;
+            }
         }
     }
 
