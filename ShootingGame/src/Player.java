@@ -28,9 +28,19 @@ public class Player extends Character implements KeyListener {
             vx=5;
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            GameWorld.playerBullets.add(new PlayerBullet(x,y,0,-10));
+            GameWorld.playerBullets.add(new PlayerBullet(x,y,10,-10));
             System.out.println("玉の数="+GameWorld.playerBullets.size());
         }
+        /*
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            GameWorld.playerBullets.add(new PlayerBullet(x,y,GameWorld.player.x,-10));
+            System.out.println("玉の数="+GameWorld.playerBullets.size());
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            GameWorld.playerBullets.add(new PlayerBullet(x,y,-10,-10));
+            System.out.println("玉の数="+GameWorld.playerBullets.size());
+        }
+        */
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             System.out.println("Enterキーが押されました");
             GameWorld.enterPressed = true;
